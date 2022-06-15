@@ -12,11 +12,22 @@ vector<string> split(const string &);
  * The function is expected to return an INTEGER.
  * The function accepts INTEGER_ARRAY a as parameter.
  */
+int lonelyinteger(vector<int> a)
+{
+    std::sort(a.begin(), a.end());
+    int result = a[0];
 
-int lonelyinteger(vector<int> a) {
-
+    for (int i = 0; i < a.size(); i+=2)
+    {
+        if (a[i] != a[i+1])
+        {
+            result = a[i];
+            break;
+        }
+    }
+    
+    return result;
 }
-
 
 string ltrim(const string &str) {
     string s(str);
