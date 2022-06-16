@@ -12,6 +12,7 @@ vector<string> split(const string &);
  * The function is expected to return an INTEGER.
  * The function accepts INTEGER_ARRAY a as parameter.
  */
+
 int lonelyinteger(vector<int> a)
 {
     std::sort(a.begin(), a.end());
