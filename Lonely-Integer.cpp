@@ -30,6 +30,18 @@ int lonelyinteger(vector<int> a)
     return result;
 }
 
+int lonelyinteger2(vector<int> a)
+{
+    int result = 0;
+
+    for (int i : a)
+    {
+        result = result ^ i;
+    }
+    
+    return result;
+}
+
 int main()
 {
     ofstream fout(getenv("OUTPUT_PATH"));
