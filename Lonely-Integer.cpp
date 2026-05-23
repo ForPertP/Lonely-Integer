@@ -30,6 +30,25 @@ int lonelyinteger(vector<int> a)
     return result;
 }
 
+
+int lonelyinteger(vector<int> a) {
+    // Initialize the result to 0. 
+    // Any number XORed with 0 remains unchanged (X ^ 0 = X).
+    int unique_element = 0;
+    
+    // Iterate through all elements in the vector.
+    for (int num : a) {
+        // Apply bitwise XOR operator (^).
+        // Duplicate numbers will cancel each other out and become 0 (X ^ X = 0).
+        // Consequently, only the element that appears once will remain.
+        unique_element ^= num;
+    }
+    
+    // Return the single unique integer that does not have a pair.
+    return unique_element;
+}
+
+
 int lonelyinteger2(vector<int> a)
 {
     int result = 0;
