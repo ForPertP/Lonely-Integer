@@ -13,6 +13,31 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 
+
+
+int lonelyinteger2(vector<int> a) {
+    // Use a Hash Map (Frequency Table) to store the count of each number.
+    // Key: the number itself, Value: how many times it appears.
+    unordered_map<int, int> frequency_map;
+    
+    // Step 1: Record the frequency of each number in the array.
+    for (int num : a) {
+        frequency_map[num]++;
+    }
+    
+    // Step 2: Traverse the map to find the element that appeared exactly once.
+    for (const auto& pair : frequency_map) {
+        // pair.first is the number, pair.second is its frequency count.
+        if (pair.second == 1) {
+            return pair.first; // Found the lonely integer.
+        }
+    }
+    
+    // Return -1 as a fallback if no unique element is found.
+    return -1; 
+}
+
+
 int lonelyinteger(vector<int> a)
 {
     std::sort(a.begin(), a.end());
