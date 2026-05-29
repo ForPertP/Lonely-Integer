@@ -31,6 +31,69 @@ int lonelyinteger(vector<int> a) {
 }
 
 
+int lonelyinteger2(vector<int> a) {
+    // Use a Hash Map (Frequency Table) to store the count of each number.
+    // Key: the number itself, Value: how many times it appears.
+    unordered_map<int, int> frequency_map;
+    
+    // Step 1: Record the frequency of each number in the array.
+    for (int num : a) {
+        frequency_map[num]++;
+    }
+    
+    // Step 2: Traverse the map to find the element that appeared exactly once.
+    for (const auto& pair : frequency_map) {
+        // pair.first is the number, pair.second is its frequency count.
+        if (pair.second == 1) {
+            return pair.first; // Found the lonely integer.
+        }
+    }
+    
+    // Return -1 as a fallback if no unique element is found.
+    return -1; 
+}
+
+
+int lonelyinteger3(vector<int> a) {
+    int n = a.size();
+    
+    // Step 1: Find the number of unique elements (U) using a std::set.
+    // std::set automatically removes duplicates.
+    set<int> unique_elements(a.begin(), a.end());
+    int u = unique_elements.size();
+    
+    // Edge case handling: If there's only 1 element or 1 kind of element
+    if (n == 1) return a[0];
+    if (u <= 1) return -1; 
+    
+    // Step 2: Automatically calculate 'k' using the mathematical formula.
+    // Total elements (n) = k * (unique kinds (u) - 1) + 1
+    int k = (n - 1) / (u - 1);
+
+    // ----------------------------------------------------------------
+    // Step 3: From here, it's the same bitwise logic you already know.
+    // ----------------------------------------------------------------
+    int result = 0;
+    
+    // Iterate through all 32 bits of an integer.
+    for (int i = 0; i < 32; i++) {
+        int bit_sum = 0;
+        
+        for (int num : a) {
+            if ((num >> i) & 1) {
+                bit_sum++;
+            }
+        }
+        
+        // Use the automatically found 'k' here.
+        if (bit_sum % k != 0) {
+            result |= (1 << i);
+        }
+    }
+    
+    return result;
+}
+
 
 int main()
 {
