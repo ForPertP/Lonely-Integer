@@ -24,8 +24,16 @@ class Result
 
     public static int lonelyinteger(List<int> a)
     {
+        int uniqueElement = 0;
 
-    }
+        foreach (int num in a)
+        {
+            uniqueElement ^= num;
+        }
+
+        return uniqueElement;
+    }    
+
 
 }
 
