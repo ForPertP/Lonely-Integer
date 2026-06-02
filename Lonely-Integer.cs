@@ -35,6 +35,29 @@ class Result
     }    
 
 
+    public static int lonelyinteger2(List<int> a)
+    {
+        Dictionary<int, int> frequencyMap = new Dictionary<int, int>();
+
+        foreach (int num in a)
+        {
+            if (frequencyMap.ContainsKey(num))
+                frequencyMap[num]++;
+            else
+                frequencyMap[num] = 1;
+        }
+
+        foreach (var pair in frequencyMap)
+        {
+            if (pair.Value == 1)
+            {
+                return pair.Key;
+            }
+        }
+
+        return -1;
+    }
+
 }
 
 class Solution
