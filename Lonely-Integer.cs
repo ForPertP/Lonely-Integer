@@ -58,7 +58,44 @@ class Result
         return -1;
     }
 
+
+    public static int lonelyinteger3(List<int> a)
+    {
+        int n = a.Count;
+
+        HashSet<int> uniqueElements = new HashSet<int>(a);
+        int u = uniqueElements.Count;
+
+        if (n == 1) return a[0];
+        if (u <= 1) return -1;
+
+        // n = k * (u - 1) + 1
+        int k = (n - 1) / (u - 1);
+
+        int result = 0;
+
+        for (int i = 0; i < 32; i++)
+        {
+            int bitSum = 0;
+
+            foreach (int num in a)
+            {
+                if (((num >> i) & 1) == 1)
+                {
+                    bitSum++;
+                }
+            }
+
+            if (bitSum % k != 0)
+            {
+                result |= (1 << i);
+            }
+        }
+
+        return result;
+    }
 }
+
 
 class Solution
 {
