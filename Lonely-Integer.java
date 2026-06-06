@@ -20,8 +20,13 @@ class Result {
      */
 
     public static int lonelyinteger(List<Integer> a) {
-    // Write your code here
+        int uniqueElement = 0;
 
+        for (int num : a) {
+            uniqueElement ^= num;
+        }
+
+        return uniqueElement;
     }
 
 }
