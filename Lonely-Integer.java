@@ -19,6 +19,7 @@ class Result {
      * The function accepts INTEGER_ARRAY a as parameter.
      */
 
+
     public static int lonelyinteger(List<Integer> a) {
         int uniqueElement = 0;
 
@@ -28,6 +29,7 @@ class Result {
 
         return uniqueElement;
     }
+
 
     public static int lonelyinteger2(List<Integer> a) {
         Map<Integer, Integer> frequencyMap = new HashMap<>();
@@ -43,9 +45,40 @@ class Result {
         }
 
         return -1;
-    }    
+    }
+    
 
+    public static int lonelyinteger3(List<Integer> a) {
+        int n = a.size();
+
+        Set<Integer> uniqueElements = new HashSet<>(a);
+        int u = uniqueElements.size();
+
+        if (n == 1) return a.get(0);
+        if (u <= 1) return -1;
+
+        int k = (n - 1) / (u - 1);
+
+        int result = 0;
+
+        for (int i = 0; i < 32; i++) {
+            int bitSum = 0;
+
+            for (int num : a) {
+                if (((num >> i) & 1) == 1) {
+                    bitSum++;
+                }
+            }
+
+            if (bitSum % k != 0) {
+                result |= (1 << i);
+            }
+        }
+
+        return result;
+    }    
 }
+
 
 public class Solution {
     public static void main(String[] args) throws IOException {
