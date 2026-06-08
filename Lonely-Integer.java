@@ -29,6 +29,22 @@ class Result {
         return uniqueElement;
     }
 
+    public static int lonelyinteger2(List<Integer> a) {
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+
+        for (int num : a) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
+
+        return -1;
+    }    
+
 }
 
 public class Solution {
